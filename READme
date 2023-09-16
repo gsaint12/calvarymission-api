@@ -1,3 +1,9 @@
-To use an ORM database tool like sequelize.
+# To initialize this app, git clone this repository
 
-i. install sequelize globally: 
+run 
+$ npm install to install all dependencies
+
+# To use an ORM database tool like sequelize.
+install sequelize globally:
+
+$ npm install -g sequelize
