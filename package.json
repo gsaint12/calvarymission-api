@@ -1,0 +1,22 @@
+{
+  "name": "calvarymission-api",
+  "version": "1.0.0",
+  "description": "the development api for church management app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "development",
+    "church",
+    "frontend",
+    "react"
+  ],
+  "author": "Godsent Clem",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "sequelize": "^6.33.0",
+    "sqlite3": "^5.1.6"
+  }
+}
