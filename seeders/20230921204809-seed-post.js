@@ -1,5 +1,6 @@
 'use strict';
-const demoContacts = require('../demoData/contactsData');
+const demoPosts = require('./../demoData/postData');
+const posts = require('./../demoData/postData')
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -13,8 +14,8 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    return queryInterface.bulkInsert('Contacts', demoContacts, {});
 
+    await queryInterface.bulkInsert('Posts', demoPosts, {});
   },
 
   async down (queryInterface, Sequelize) {
@@ -23,10 +24,6 @@ module.exports = {
      *
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
-     * 
      */
-
-    return queryInterface.bulkDelete('Contacts', null, {});
-
   }
 };

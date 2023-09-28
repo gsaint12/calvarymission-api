@@ -1,9 +1,11 @@
 const express = require('express');  // here we import our express framework
 const app = express();
+const memberApiRoutes = require('./apiRoutes/memberApi/members');
+const userApiRoutes = require('./apiRoutes/userApi/users');
+const postApiRoutes = require('./apiRoutes/postApi/posts');
+const authApiRoutes = require('./apiRoutes/authApi/auth');
+const protectedApiRoutes = require('./apiRoutes/protectedRoutes/protected');
 
-const db = require('./models'); // new require for db object
-
-const port = 8080;
 
 app.use(express.json());
 
@@ -13,20 +15,27 @@ app.use(
     })
 );
 
+app.use(
+    '/api/auth', authApiRoutes
+);
+
+app.use(
+    '/admin', protectedApiRoutes
+);
+
+app.use(
+  '/api/users', userApiRoutes
+);
+app.use(
+    '/api/members', memberApiRoutes
+);
+app.use(
+    '/api/posts', postApiRoutes
+);
+
+
 app.get('/', (req, res)=>{
     res.json({message: "it's working"})
 });
 
-app.get('/api/contacts', (req, res) => {
-    return db.Contact.findAll()
-      .then((contacts) => res.json(contacts))
-      .catch((err) => {
-        console.log('There was an error querying contacts', JSON.stringify(err))
-        return res.send(err)
-      });
-  });  
-
-// Start the server
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-  });
+module.exports = app;
