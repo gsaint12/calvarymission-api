@@ -24,4 +24,4 @@ const demoContacts =
     updatedAt: new Date().toDateString()
   }];
 
-  module.exports = demoContacts
+  module.exports = demoContacts 

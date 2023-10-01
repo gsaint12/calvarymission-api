@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
     return db.User.findAll()
       .then((users) => res.json(users))
       .catch((err) => {
-        console.log('There was an error querying contacts', JSON.stringify(err))
+        console.log('There was an error querying users', JSON.stringify(err))
         return res.send(err)
       });
   });  
@@ -31,9 +31,9 @@ router.get('/', (req, res) => {
   router.put('/', (req, res) => {
     return db.User.findById(userId)
     .then((user) => {
-      const { firstName, lastName, phone } = req.body
-      return contact.update({ firstName, lastName, email })
-        .then(() => res.send(contact))
+      const { firstName, lastName, email, phone } = req.body
+      return user.update({ firstName, lastName, email, phone })
+        .then(() => res.send(user))
         .catch((err) => {
           console.log('***Error updating contact', JSON.stringify(err))
           res.status(400).send(err)
@@ -43,7 +43,7 @@ router.get('/', (req, res) => {
 
   router.delete('/:id', (req, res) => {
     return db.User.findById(userId)
-      .then((user) => contact.destroy({ force: true }))
+      .then((user) => user.destroy({ force: true }))
       .then(() => res.send({ id }))
       .catch((err) => {
         console.log('***Error deleting contact', JSON.stringify(err))
@@ -53,10 +53,10 @@ router.get('/', (req, res) => {
   
   router.put('/:id', (req, res) => {
     const id = parseInt(req.params.id)
-    return db.Contact.findById(id)
+    return db.User.findById(id)
     .then((user) => {
-      const { firstName, lastName, email, password } = req.body
-      return contact.update({ firstName, lastName, email, password })
+      const { firstName, lastName, email, phone, password } = req.body
+      return user.update({ firstName, lastName, email, phone, password })
         .then(() => res.send(user))
         .catch((err) => {
           console.log('***Error updating contact', JSON.stringify(err))
@@ -65,4 +65,4 @@ router.get('/', (req, res) => {
     })
   });
 
-  module.exports = router;
+  module.exports = router; 
